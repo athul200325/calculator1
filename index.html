@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(211, 211, 211);
+    }
+    #calculator{
+        box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3),
+        4px 4px 10px rgba(0, 0, 0, 0.5);
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+        border-radius: 15px;
+        max-width: 500px;
+        overflow: hidden;
+    }
+    #display{
+        width: 100%;
+        border: none;
+        text-align: left;
+        font-size: 5rem;
+        padding: 17px;
+        background-color: rgb(50, 50, 50);
+        color: white;
+    }
+    #keys{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 20px;
+        padding: 10px;
+    }
+    button{
+        width: 100px;
+        height: 100px;
+        border-radius: 20px;
+        border: none;
+        background-color: rgb(109, 49, 165);
+        color: white;
+        font-size: 40px;
+        font-weight: 500px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: rgb(143, 67, 215);
+    }
+    button:active{
+        background-color: rgb(106, 48, 161);
+    }
+    .op-btn{
+        background-color: rgb(223, 129, 22);
+    }
+    .op-btn:hover{
+        background-color: rgb(252, 158, 51);
+    }
+    .op-btn:active{
+        background-color: rgb(183, 111, 30);
+    }
+    #equal-btn {
+        grid-column: span 4; 
+        background-color: rgba(255, 255, 255, 0.386);
+        width: 100%;
+    }
+</style>
+<body>
+    <div id="calculator">
+        <input placeholder="0" id="display" readonly>
+        <div id="keys">
+            <button onclick="appendToDisplay('+')" class="op-btn">+</button>
+
+            <button onclick="appendToDisplay('7')">7</button>
+
+            <button onclick="appendToDisplay('8')">8</button>
+
+            <button onclick="appendToDisplay('9')">9</button>
+
+            <button onclick="appendToDisplay('-')" class="op-btn">-</button>
+
+            <button onclick="appendToDisplay('4')">4</button>
+
+            <button onclick="appendToDisplay('5')">5</button>
+
+            <button onclick="appendToDisplay('6')">6</button>
+
+            <button onclick="appendToDisplay('*')" class="op-btn">*</button>
+
+            <button onclick="appendToDisplay('1')">1</button>
+
+            <button onclick="appendToDisplay('2')">2</button>
+
+            <button onclick="appendToDisplay('3')">3</button>
+
+            <button onclick="appendToDisplay('/')" class="op-btn">/</button>
+
+            <button onclick="appendToDisplay('0')">0</button>
+
+            <button onclick="clearDisplay()">C</button>
+
+            <button onclick="backClear()">&#9003</button>
+
+            <button id="equal-btn" style="background-color: rgba(255, 255, 255, 0.386); " onclick="equalToDisplay()">=</button>
+
+
+        </div>
+    </div>
+</body>
+<script>
+const display = document.getElementById("display");
+
+const appendToDisplay =(input)=>{
+    display.value+=input;
+};
+
+const equalToDisplay=()=>{
+    if(display.value==="") {
+        display.value="";
+    }else{
+        try{
+            display.value=eval(display.value);
+        }catch(error){
+            display.value="error!";
+        }
+    }
+};
+
+const clearDisplay=()=>{
+    display.value="";
+};
+
+const backClear=()=>{
+    display.value=display.value.slice(0,-1);
+}
+</script>
+</html>
